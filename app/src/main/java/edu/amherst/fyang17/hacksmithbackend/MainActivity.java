@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
         ll.addView(myButton, lp);
         myButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this,TransactionList.class);
+                Intent intent = new Intent(MainActivity.this,TransactionList2.class);
                 startActivity(intent);
             }
         });

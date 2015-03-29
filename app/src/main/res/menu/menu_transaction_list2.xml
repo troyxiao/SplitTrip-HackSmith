@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.amherst.fyang17.hacksmithbackend.TransactionList2">
+    <item android:id="@+id/action_listing" android:title="Add New"
+        android:onClick="addNewListing"
+        />
+    <item android:id="@+id/action_hist" android:title="View List"
+        android:onClick="showHist"
+        />
+</menu>

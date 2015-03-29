@@ -20,14 +20,33 @@
         <activity
             android:name=".TransactionList"
             android:label="@string/title_activity_transaction_list"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".TransactionList2" >
+        </activity>
+        <activity
+            android:name=".TransactionList2"
+            android:label="@string/title_activity_transaction_list"
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity
             android:name=".AddNewGroupActivity"
             android:label="Add New Group"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
         </activity>
-
+        <activity
+            android:name=".memberCheckboxingActivity"
+            android:label="Members Who Owe"
+            android:parentActivityName=".AddNewDues" >
+        </activity>
+        <activity
+            android:name=".AddNewDues"
+            android:label="Add New Listing"
+            android:parentActivityName=".TransactionList2" >
+        </activity>
+        <activity
+            android:name=".Details"
+            android:label="@string/title_activity_details"
+            android:parentActivityName=".TransactionList2">
+        </activity>
     </application>
 
 </manifest>
