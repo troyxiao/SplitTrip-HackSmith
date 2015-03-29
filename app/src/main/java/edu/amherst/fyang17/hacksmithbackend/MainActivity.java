@@ -26,6 +26,25 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    public void initializeTable(View view){
+        ImportantFunctions.buildRelationTable();
+        //List<Persons> a = Persons.find(Persons.class,"name=?","Angelina");
+        //List<RelationTable> b = RelationTable.find(RelationTable.class,"p1=?",a.get(0).name);
+        //for (int i=0;i<b.size();i++){
+        //    System.out.println(b.get(i).p2+" owes "+b.get(i).p1+" "+b.get(i).amount+" dollars");
+        //}
+    }
+
+    public void addEntry(View view){
+        String payees = "Angelina,Hui,Fanhao";
+        ImportantFunctions.addTransaction("Hui",payees,15,"food");
+    }
+
+    public void showList(View view){
+        ImportantFunctions.returnList();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

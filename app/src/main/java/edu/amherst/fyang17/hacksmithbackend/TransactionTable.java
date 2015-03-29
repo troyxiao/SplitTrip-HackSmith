@@ -8,19 +8,18 @@ import java.util.*;
  */
 public class TransactionTable extends SugarRecord{
     static int count = 0;
-
     int number;
     String payer;
-    String[] payees;
+    String payees;
     float amount;
     String description;
 
     public TransactionTable(){
 
     }
-    public TransactionTable(String payer, String[] payees, float amount, String description){
-        this.number = count+1;
-        count++;
+    public TransactionTable(String payer, String payees, float amount, String description){
+        //this.number = count+1;
+        //count++;
         this.payer = payer;
         this.payees = payees;
         this.amount = amount;
