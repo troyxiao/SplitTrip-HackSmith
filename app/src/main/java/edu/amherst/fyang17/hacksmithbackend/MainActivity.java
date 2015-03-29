@@ -1,5 +1,6 @@
 package edu.amherst.fyang17.hacksmithbackend;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +19,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void makePeople(View view){
-        String[] list = {"Hui","Fanhao","Sally","Angelina"};
+        String[] list = {"Hui Xu","Fanhao Yang","Sally Yuen","Angelina Guan"};
         ImportantFunctions.buildPersonList(list);
         List<Persons> people = Persons.listAll(Persons.class);
         for (int i=0;i<people.size();i++){
@@ -36,12 +37,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void addEntry(View view){
-        String payees = "Angelina,Hui,Fanhao";
-        ImportantFunctions.addTransaction("Hui",payees,15,"food");
+        String payees = "Angelina Guan,Hui Xu,Fanhao Yang,Sally Yuen";
+        ImportantFunctions.addTransaction("Fanhao Yang",payees,100,"renxing");
     }
 
     public void showList(View view){
-        ImportantFunctions.returnList();
+        Intent intent = new Intent(this, TransactionList.class);
+        startActivity(intent);
     }
 
 

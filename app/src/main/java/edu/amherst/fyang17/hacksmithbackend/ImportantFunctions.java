@@ -60,16 +60,19 @@ public class ImportantFunctions {
         }
     }
 
-    public static void returnList(){
+    public static ArrayList<Items> returnList(){
         List<TransactionTable> list = TransactionTable.listAll(TransactionTable.class);
+        ArrayList<Items> toReturn  = new ArrayList<>();
         for (int i=0;i<list.size();i++){
-            String[] payees = list.get(i).payees.split(" ");
-            String toPrint = list.get(i).payer+" ";
+            String[] payees = list.get(i).payees.split(",");
+            String s1 = list.get(i).payer;
+            String s2 = "";
             for (int j=0;j<payees.length;j++){
-                toPrint = toPrint+payees[j]+" ";
+                s2 = s2+payees[j]+", ";
             }
-            toPrint = toPrint+list.get(i).amount+" "+list.get(i).description;
-            System.out.println(toPrint);
+            s2 = s2+"$"+list.get(i).amount+" "+list.get(i).description;
+            toReturn.add(new Items(s1,s2));
         }
+        return toReturn;
     }
 }
