@@ -75,4 +75,19 @@ public class ImportantFunctions {
         }
         return toReturn;
     }
+
+    public static ArrayList<Items> returnBalance(){
+        ArrayList<Items> toReturn = new ArrayList<>();
+        List<Persons> people = Persons.listAll(Persons.class);
+        int n = people.size();
+        for (int i=0;i<n;i++) {
+            List<RelationTable> list = RelationTable.find(RelationTable.class,"p1=?",people.get(i).name);
+            float sum = 0;
+            for (int j=0;j<n-1;j++){
+                sum = sum + list.get(j).amount;
+            }
+            toReturn.add(new Items(people.get(i).name,String.format("%.2f",sum)));
+        }
+        return toReturn;
+    }
 }

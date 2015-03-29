@@ -1,21 +1,38 @@
 package edu.amherst.fyang17.hacksmithbackend;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.*;
 
 
 public class MainActivity extends ActionBarActivity {
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences group = getSharedPreferences(PREFS_NAME,0);
+        String groupName = group.getString("groupName","not_initiated");
+        System.out.println(groupName);
+    }
+
+    public void newGroup(View view){
+        EditText editText = (EditText) findViewById(R.id.new_group);
+        String groupName = editText.getText().toString();
+        SharedPreferences group = getSharedPreferences(PREFS_NAME,0);
+        SharedPreferences.Editor editor = group.edit();
+        editor.putString("groupName",groupName);
+        editor.commit();
+        makePeople(view);
+        initializeTable(view);
     }
 
     public void makePeople(View view){
