@@ -22,6 +22,12 @@
             android:label="@string/title_activity_transaction_list"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".AddNewGroupActivity"
+            android:label="Add New Group"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
     </application>
 
 </manifest>

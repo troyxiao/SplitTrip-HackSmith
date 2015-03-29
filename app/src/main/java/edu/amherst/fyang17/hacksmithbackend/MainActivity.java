@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import java.util.*;
 
@@ -19,39 +20,35 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences group = getSharedPreferences(PREFS_NAME,0);
-        String groupName = group.getString("groupName","not_initiated");
-        System.out.println(groupName);
-    }
-
-    public void newGroup(View view){
-        EditText editText = (EditText) findViewById(R.id.new_group);
-        String groupName = editText.getText().toString();
-        SharedPreferences group = getSharedPreferences(PREFS_NAME,0);
-        SharedPreferences.Editor editor = group.edit();
-        editor.putString("groupName",groupName);
-        editor.commit();
-        makePeople(view);
-        initializeTable(view);
-    }
-
-    public void makePeople(View view){
-        String[] list = {"Hui Xu","Fanhao Yang","Sally Yuen","Angelina Guan"};
-        ImportantFunctions.buildPersonList(list);
-        List<Persons> people = Persons.listAll(Persons.class);
-        for (int i=0;i<people.size();i++){
-            System.out.println(people.get(i).name);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(AddNewGroupActivity.EXTRA_MESSAGE);
+        if (message!=null){
+            SharedPreferences group = getSharedPreferences(PREFS_NAME,0);
+            SharedPreferences.Editor editor = group.edit();
+            editor.putString("groupName",message);
+            editor.commit();
         }
+        SharedPreferences group = getSharedPreferences(PREFS_NAME,0);
+        String groupName = group.getString("groupName","You should now create a new group");
+        Button myButton = new Button(this);
+        myButton.setText(groupName);
+        RelativeLayout ll = (RelativeLayout) findViewById(R.id.relative_layout_id);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        ll.addView(myButton, lp);
+        myButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this,TransactionList.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    public void initializeTable(View view){
-        ImportantFunctions.buildRelationTable();
-        //List<Persons> a = Persons.find(Persons.class,"name=?","Angelina");
-        //List<RelationTable> b = RelationTable.find(RelationTable.class,"p1=?",a.get(0).name);
-        //for (int i=0;i<b.size();i++){
-        //    System.out.println(b.get(i).p2+" owes "+b.get(i).p1+" "+b.get(i).amount+" dollars");
-        //}
+    public void addGroup(View view){
+        Intent intent = new Intent(this, AddNewGroupActivity.class);
+        startActivity(intent);
+
     }
+
 
     public void addEntry(View view){
         String payees = "Angelina Guan,Hui Xu,Fanhao Yang,Sally Yuen";
