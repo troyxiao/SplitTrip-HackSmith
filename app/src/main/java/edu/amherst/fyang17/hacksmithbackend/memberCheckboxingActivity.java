@@ -30,6 +30,8 @@ public class memberCheckboxingActivity extends ActionBarActivity {
         linearMain = (LinearLayout) findViewById(R.id.linearMain);
           checked = new boolean[str.length];
 
+        memberList = "";
+
         for(int i = 0; i < str.length; i++){
             checkBox = new CheckBox(this);
             checkBox.setId(i);

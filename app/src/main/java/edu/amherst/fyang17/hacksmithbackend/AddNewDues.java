@@ -42,6 +42,7 @@ public class AddNewDues extends ActionBarActivity {
         String message2 = editText2.getText().toString();
         EditText editText3 = (EditText) findViewById(R.id.payer);
         String message3 = editText3.getText().toString();
+        System.out.println(memberCheckboxingActivity.memberList);
         ImportantFunctions.addTransaction(message3,memberCheckboxingActivity.memberList,Float.parseFloat(message2),message1);
         Intent intent = new Intent(this,TransactionList.class);
         startActivity(intent);
