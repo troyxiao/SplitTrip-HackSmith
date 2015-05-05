@@ -1,29 +1,61 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relative_layout_id"
+    android:backgroundTint="@color/abc_background_cache_hint_selector_material_dark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+
+   >
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:text="@string/button_add"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:text="Create a new group:)"
         android:onClick="addGroup"
+        android:shadowColor="@color/bright_foreground_disabled_material_dark"
+
         android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:width="550dp"
+        android:height="20dp"
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/zoomButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="500dp"
+        android:layout_height="700dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="HOME"
+        android:text="              Manage your Groups"
+        android:textColor="#FFFFFF"
         android:id="@+id/textView"
         android:singleLine="false"
+
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/zoomButton"
+        android:layout_alignEnd="@+id/zoomButton"
+        android:layout_below="@+id/button" />
+
+    <ZoomButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/zoomButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:background="@drawable/hiii"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/zoomButton" />
 
 
 </RelativeLayout>
