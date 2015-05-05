@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#34282C"
+
     android:orientation="horizontal"
     >
 
@@ -10,35 +10,44 @@
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="80sp"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:paddingLeft="5dp"
         android:layout_gravity="left|center_vertical"
+
         android:layout_marginLeft="10sp"
         android:typeface="serif"
-        android:textColor="#F0F0F0">
+        android:textColor="#000000">
     </TextView>
 
     <TextView
         android:id="@+id/value"
-        android:layout_width="400sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15sp"
-        android:layout_gravity="right"
-        android:paddingLeft="220dp"
-        android:textSize="40sp"
-        android:textColor="#00CC00"
-        >
+        android:layout_gravity="center"
+        android:paddingLeft="210dp"
+        android:textSize="30sp"
+
+        android:textColor="#437C17"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
     </TextView>
     <TextView
         android:id="@+id/value2"
-        android:layout_width="400sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15sp"
-        android:layout_gravity="right"
-        android:paddingLeft="220dp"
-        android:textSize="40sp"
-        android:textColor="#F00000"
-        >
+        android:layout_gravity="center"
+        android:paddingLeft="210dp"
+
+        android:textSize="30sp"
+        android:textColor="#8C001A"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
     </TextView>
 
 
