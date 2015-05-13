@@ -1,5 +1,6 @@
 package edu.amherst.fyang17.hacksmithbackend;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,7 +17,7 @@ public class memberCheckboxingActivity extends ActionBarActivity {
     LinearLayout linearMain;
     CheckBox checkBox;
     boolean[] checked;
-    public static String memberList="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,28 +29,44 @@ public class memberCheckboxingActivity extends ActionBarActivity {
             str[i] = people.get(i).name;
         }
         linearMain = (LinearLayout) findViewById(R.id.linearMain);
-          checked = new boolean[str.length];
-
-        memberList = "";
+        checked = new boolean[str.length];
 
         for(int i = 0; i < str.length; i++){
             checkBox = new CheckBox(this);
             checkBox.setId(i);
             checkBox.setText(str[i]);
+            if (AddNewDues.memberList[i]==false){
+                checkBox.setChecked(false);
+            }
+            else checkBox.setChecked(true);
             checkBox.setOnClickListener(getOnClickDoSomething(checkBox, str[i]));
             linearMain.addView(checkBox);
-
         }
 
     }
     View.OnClickListener getOnClickDoSomething(final Button button,final String p) {
         return new View.OnClickListener() {
             public void onClick(View v) {
-                memberList+=p + ",";
+                List<Persons> people = Persons.listAll(Persons.class);
+                for (int i=0;i<people.size();i++){
+                    if (people.get(i).name.equals(p)){
+                        if (AddNewDues.memberList[i]==false)
+                            AddNewDues.memberList[i] = true;
+                        else AddNewDues.memberList[i] = false;
+                        break;
+                    }
+                }
             }
         };
     }
 
+
+    public void returnToAddDues(View view){
+        Intent intent = new Intent(this,AddNewDues.class);
+        //This seems to resume the AddNewDues activity to its previous state when started. Not sure why...
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

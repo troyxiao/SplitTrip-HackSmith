@@ -5,9 +5,10 @@ import com.orm.SugarRecord;
 /**
  * Created by Administrator on 3/28/2015.
  */
-public class RelationTable extends SugarRecord{
+public class RelationTable extends SugarRecord<RelationTable>{
     String p1;
     String p2;
+    //the amount here is always in USD
     float amount;
 
     public RelationTable(){

@@ -50,15 +50,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    public void addEntry(View view){
-        String payees = "Angelina Guan,Hui Xu,Fanhao Yang,Sally Yuen";
-        ImportantFunctions.addTransaction("Fanhao Yang",payees,100,"renxing");
-    }
 
-    public void showList(View view){
-        Intent intent = new Intent(this, TransactionList.class);
-        startActivity(intent);
-    }
+
 
 
 

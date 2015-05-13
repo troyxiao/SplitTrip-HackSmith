@@ -37,14 +37,16 @@ public class MyAdapter2 extends ArrayAdapter<Items2> {
         TextView labelView = (TextView) rowView.findViewById(R.id.label);
         TextView valueView;
         if(y>=0){
-            valueView = (TextView) rowView.findViewById(R.id.value);}
-        else{
-            valueView = (TextView) rowView.findViewById(R.id.value2);}
-        // 4. Set the text for textView
-        labelView.setText(itemsArrayList.get(position).getName());
-        valueView.setText(itemsArrayList.get(position).getMoney());
+            valueView = (TextView) rowView.findViewById(R.id.value);
+            labelView.setText(itemsArrayList.get(position).getName());
+            valueView.setText("$"+itemsArrayList.get(position).getMoney());
+        }
+        else {
+            valueView = (TextView) rowView.findViewById(R.id.value2);
+            labelView.setText(itemsArrayList.get(position).getName());
+            valueView.setText("-$"+itemsArrayList.get(position).getMoney().substring(1));
+        }
 
-        // 5. retrn rowView
         return rowView;
     }
 }

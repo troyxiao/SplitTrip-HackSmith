@@ -4,6 +4,7 @@
     tools:context="edu.amherst.fyang17.hacksmithbackend.TransactionList2">
     <item android:id="@+id/action_listing" android:title="Add New"
         android:onClick="addNewListing"
+        app:showAsAction="ifRoom"
         />
     <item android:id="@+id/action_hist" android:title="View List"
         android:onClick="showHist"

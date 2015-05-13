@@ -6,7 +6,11 @@ package edu.amherst.fyang17.hacksmithbackend;
 import java.util.*;
 public class ImportantFunctions {
     public static void buildPersonList(String[] people){
-        Persons.deleteAll(Persons.class);
+        //Persons test = new Persons("random");
+        //test.save();
+        //if (Persons.count(Persons.class,null,null)==1) {
+            //Persons.deleteAll(Persons.class);
+        //}
         int n = people.length;
         for (int i=0;i<n;i++){
             Persons temp = new Persons(people[i]);
@@ -14,8 +18,12 @@ public class ImportantFunctions {
         }
     }
     public static void buildRelationTable(){
-        TransactionTable.deleteAll(TransactionTable.class);
-        RelationTable.deleteAll(RelationTable.class);
+        //if (TransactionTable.count(TransactionTable.class,null,null)==0) {
+           // TransactionTable.deleteAll(TransactionTable.class);
+        //}
+        //if (RelationTable.count(RelationTable.class,null,null)==0) {
+         //   RelationTable.deleteAll(RelationTable.class);
+        //}
         List<Persons> people = Persons.listAll(Persons.class);
         int k = people.size();
         for (int i=0;i<k;i++){
@@ -28,11 +36,17 @@ public class ImportantFunctions {
         }
     }
 
-    public static void addTransaction(String payer, String payee, float amount, String description){
-        TransactionTable temp = new TransactionTable(payer,payee,amount,description);
+    public static void addTransaction(String payer, String payee, float amount, String description, String currency){
+        TransactionTable temp = new TransactionTable(payer,payee,amount,description,currency);
         temp.save();
         String[] payees = payee.split(",");
         float fraction = amount/payees.length;
+        if (currency.equals("USD"))
+            fraction = fraction/1;
+        else if (currency.equals("CNY"))
+            fraction = fraction/(float)6.21;
+        else if (currency.equals("PEN"))
+            fraction = fraction/(float)3.15;
         List<Persons> a = Persons.find(Persons.class,"name=?",payer);
         List<RelationTable> b = RelationTable.find(RelationTable.class,"p1=?",a.get(0).name);
         for (int i=0;i<b.size();i++){
@@ -60,22 +74,36 @@ public class ImportantFunctions {
         }
     }
 
+    //This function returns the list of all historical transactions and feeds it to the Payment History (TransactionList) activity
     public static ArrayList<Items> returnList(){
         List<TransactionTable> list = TransactionTable.listAll(TransactionTable.class);
         ArrayList<Items> toReturn  = new ArrayList<>();
         for (int i=0;i<list.size();i++){
             String[] payees = list.get(i).payees.split(",");
             String s1 = list.get(i).payer;
-            String s2 = "";
+            String s2 = "For ";
             for (int j=0;j<payees.length;j++){
                 s2 = s2+payees[j]+", ";
             }
-            s2 = s2+"$"+list.get(i).amount+" "+list.get(i).description;
+            switch (list.get(i).currency){
+                case "USD":
+                    s1 = s1+" paid $"+list.get(i).amount;
+                    break;
+                case "CNY":
+                    s1 = s1+" paid ￥"+list.get(i).amount;
+                    break;
+                case "PEN":
+                    s1 = s1+" paid Sol."+list.get(i).amount;
+                    break;
+                default: s1 = s1+" paid $"+list.get(i).amount;
+            }
+            s2 = s2+list.get(i).description;
             toReturn.add(new Items(s1,s2));
         }
         return toReturn;
     }
 
+    //This function returns the balance of everyone in the group and feeds this to the Personal Balances (TransactionList2) for display
     public static ArrayList<Items2> returnBalance(){
         ArrayList<Items2> toReturn = new ArrayList<>();
         List<Persons> people = Persons.listAll(Persons.class);
@@ -91,6 +119,7 @@ public class ImportantFunctions {
         return toReturn;
     }
 
+    //This function returns the details regarding how much each person owes or is owed by everyone else. This is displayed in the Details (details) activity
     public static ArrayList<Items> returnDetail(){
         ArrayList<Items> toReturn = new ArrayList<>();
         List<Persons> people = Persons.listAll(Persons.class);
