@@ -14,13 +14,8 @@ public class Details extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        // 1. pass context and data to the custom adapter
         MyAdapter adapter = new MyAdapter(this, ImportantFunctions.returnDetail());
-
-        // 2. Get ListView from activity_main.xml
         ListView listView = (ListView) findViewById(R.id.listview);
-
-        // 3. setListAdapter
         listView.setAdapter(adapter);
     }
 

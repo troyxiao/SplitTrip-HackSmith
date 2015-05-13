@@ -34,7 +34,7 @@
         </activity>
         <activity
             android:name=".memberCheckboxingActivity"
-            android:label="Members Who Owe">
+            android:label="Members Who Owe" >
         </activity>
         <activity
             android:name=".AddNewDues"
@@ -45,7 +45,15 @@
         <activity
             android:name=".Details"
             android:label="@string/title_activity_details"
-            android:parentActivityName=".TransactionList2">
+            android:parentActivityName=".TransactionList2" >
+        </activity>
+        <activity
+            android:name=".PersonalDues"
+            android:label="@string/title_activity_personal_dues"
+            android:parentActivityName=".TransactionList2" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.amherst.fyang17.hacksmithbackend.TransactionList2" />
         </activity>
     </application>
 

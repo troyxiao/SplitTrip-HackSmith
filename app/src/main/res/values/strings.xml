@@ -3,7 +3,7 @@
     <string name="button_add">Add + </string>
     <string name="title_activity_add_new_group">AddNewGroupActivity</string>
     <string name="button_add_name">Add</string>
-    <string name="name_hint">Names (separated by commas)</string>
+    <string name="name_hint">Members (separated by commas)</string>
     <string name="group_hint">Group Name</string>
     <string name="description_hint">Description</string>
     <string name="submit_group">Submit</string>
@@ -17,4 +17,5 @@
         <item>Chinese Yuan</item>
         <item>Nuevos Soles</item>
     </string-array>
+    <string name="title_activity_personal_dues">Personal Dues</string>
 </resources>

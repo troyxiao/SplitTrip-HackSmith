@@ -16,11 +16,12 @@
             android:layout_height="wrap_content"
 
             />
-        <Button
+        <!--Commenting out the detail button-->
+        <!--<Button
             android:id="@+id/buttonx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Payment Details"/>
+            android:text="Payment Details"/>-->
     </LinearLayout>
 
 </RelativeLayout>

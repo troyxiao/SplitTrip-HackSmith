@@ -1,10 +1,13 @@
 package edu.amherst.fyang17.hacksmithbackend;
+import android.app.Activity;
+import android.content.ClipData;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -14,29 +17,37 @@ import android.view.View.OnClickListener;
 
 
 public class TransactionList2 extends ActionBarActivity {
-
+    public final static String EXTRA_MESSAGE = "edu.amherst.fyang17.fyang17.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_list2);
+        final Activity activity = this;
 
-        // 1. pass context and data to the custom adapter
-        MyAdapter2 adapter = new MyAdapter2(this, ImportantFunctions.returnBalance());
-
-        // 2. Get ListView from activity_main.xml
+        final MyAdapter2 adapter = new MyAdapter2(this, ImportantFunctions.returnBalance());
         ListView listView = (ListView) findViewById(R.id.listview);
-
-        // 3. setListAdapter
         listView.setAdapter(adapter);
+        //Make the lists clickable
+        AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                Intent intent = new Intent(activity,PersonalDues.class);
+                String personName = adapter.getItem(position).getName();
+                intent.putExtra(EXTRA_MESSAGE,personName);
+                startActivity(intent);
+            }
+        };
 
-        Button button1 = (Button) findViewById(R.id.buttonx);
+        listView.setOnItemClickListener(mMessageClickedHandler);
+
+        //Now commenting out the detail button
+        /*Button button1 = (Button) findViewById(R.id.buttonx);
         button1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TransactionList2.this, Details.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
     }
 

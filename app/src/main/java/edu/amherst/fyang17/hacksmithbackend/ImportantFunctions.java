@@ -6,11 +6,9 @@ package edu.amherst.fyang17.hacksmithbackend;
 import java.util.*;
 public class ImportantFunctions {
     public static void buildPersonList(String[] people){
-        //Persons test = new Persons("random");
-        //test.save();
-        //if (Persons.count(Persons.class,null,null)==1) {
-            //Persons.deleteAll(Persons.class);
-        //}
+        if (Persons.count(Persons.class,null,null)!=0) {
+            Persons.deleteAll(Persons.class);
+        }
         int n = people.length;
         for (int i=0;i<n;i++){
             Persons temp = new Persons(people[i]);
@@ -18,12 +16,12 @@ public class ImportantFunctions {
         }
     }
     public static void buildRelationTable(){
-        //if (TransactionTable.count(TransactionTable.class,null,null)==0) {
-           // TransactionTable.deleteAll(TransactionTable.class);
-        //}
-        //if (RelationTable.count(RelationTable.class,null,null)==0) {
-         //   RelationTable.deleteAll(RelationTable.class);
-        //}
+        if (TransactionTable.count(TransactionTable.class,null,null)!=0) {
+            TransactionTable.deleteAll(TransactionTable.class);
+        }
+        if (RelationTable.count(RelationTable.class,null,null)!=0) {
+            RelationTable.deleteAll(RelationTable.class);
+        }
         List<Persons> people = Persons.listAll(Persons.class);
         int k = people.size();
         for (int i=0;i<k;i++){
@@ -131,6 +129,23 @@ public class ImportantFunctions {
                 payee=payee+list.get(j).p2+": "+String.format("%.2f",list.get(j).amount)+", ";
             }
             toReturn.add(new Items(people.get(i).name,payee));
+        }
+        return toReturn;
+    }
+
+    //This function returns the personal details regarding owing or being owed by other people
+    public static ArrayList<Items> returnPersonalDues(String personName){
+        ArrayList<Items> toReturn = new ArrayList<>();
+        List<Persons> people = Persons.listAll(Persons.class);
+        List<RelationTable> list = RelationTable.find(RelationTable.class,"p1=?",personName);
+        for (int i=0;i<people.size()-1;i++){
+            String money = String.format("%.2f",Math.abs(list.get(i).amount));
+            String description;
+            if (list.get(i).amount>=0){
+                description = personName+" is owed by "+list.get(i).p2;
+            }
+            else description = personName+" owes "+list.get(i).p2;
+            toReturn.add(new Items("$"+money,description));
         }
         return toReturn;
     }

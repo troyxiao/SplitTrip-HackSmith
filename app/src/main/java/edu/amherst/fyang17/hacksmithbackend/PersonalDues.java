@@ -1,20 +1,24 @@
 package edu.amherst.fyang17.hacksmithbackend;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
-public class TransactionList extends ActionBarActivity {
+public class PersonalDues extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaction_list);
+        setContentView(R.layout.activity_personal_dues);
+        Intent intent = getIntent();
+        String personName = intent.getStringExtra(TransactionList2.EXTRA_MESSAGE);
 
-        MyAdapter adapter = new MyAdapter(this, ImportantFunctions.returnList());
+        MyAdapter adapter = new MyAdapter(this, ImportantFunctions.returnPersonalDues(personName));
         ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
     }
@@ -23,7 +27,7 @@ public class TransactionList extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_transaction_list, menu);
+        getMenuInflater().inflate(R.menu.menu_personal_dues, menu);
         return true;
     }
 
@@ -38,7 +42,6 @@ public class TransactionList extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

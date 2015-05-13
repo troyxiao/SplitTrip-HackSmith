@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.List;
 
@@ -43,6 +44,15 @@ public class memberCheckboxingActivity extends ActionBarActivity {
             linearMain.addView(checkBox);
         }
 
+        Button button = new Button(this);
+        button.setText("OKAY");
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                returnToAddDues(v);
+            }
+        });
+        linearMain.addView(button);
+
     }
     View.OnClickListener getOnClickDoSomething(final Button button,final String p) {
         return new View.OnClickListener() {
@@ -60,6 +70,13 @@ public class memberCheckboxingActivity extends ActionBarActivity {
         };
     }
 
+
+    public void selectAll(View view){
+        for (int i=0;i<AddNewDues.memberList.length;i++) {
+            CheckBox cb = (CheckBox) findViewById(i);
+            cb.setChecked(true);
+        }
+    }
 
     public void returnToAddDues(View view){
         Intent intent = new Intent(this,AddNewDues.class);
