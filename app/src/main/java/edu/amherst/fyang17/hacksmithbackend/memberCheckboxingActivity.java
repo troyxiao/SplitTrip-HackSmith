@@ -75,6 +75,7 @@ public class memberCheckboxingActivity extends ActionBarActivity {
         for (int i=0;i<AddNewDues.memberList.length;i++) {
             CheckBox cb = (CheckBox) findViewById(i);
             cb.setChecked(true);
+            AddNewDues.memberList[i] = true;
         }
     }
 

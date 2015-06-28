@@ -102,7 +102,6 @@ public class AddNewDues extends ActionBarActivity implements AdapterView.OnItemS
                 else listOfPayee = listOfPayee + "," + people.get(i).name;
             }
         }
-
         ImportantFunctions.addTransaction(payer,listOfPayee,Float.parseFloat(message2),message1,selectedCurrency);
         memberList = new boolean[people.size()];
         Intent intent = new Intent(this,TransactionList.class);
